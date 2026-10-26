@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lordquirinus.github.io/auf-einen-blick/sitemap.xml
