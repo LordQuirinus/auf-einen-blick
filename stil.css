@@ -228,6 +228,61 @@ small{font-size:.85em}
 .ast h3{margin:0 0 .3em}
 .ast-satz{font-style:italic;color:var(--tinte2);margin:0 0 .6em;font-size:1rem}
 
+/* Zeitleiste (Bücher-Seite): Goldpfad und Kreise wie das Familienplakat. Quer als SVG erst ab 1200 px (die
+   SVG-Schrift skaliert mit), darunter dieselbe Zeitleiste senkrecht als Liste — Schrift bleibt ≥ 14 px. */
+.zeitleiste{margin:8px 0 clamp(20px,3vw,36px);padding:0 0 clamp(20px,3vw,32px);border-bottom:1px solid var(--linie)}
+.zeitleiste h2{margin-bottom:.2em}
+.zl-legende{color:var(--tinte2);font-size:1rem;margin:0 0 1rem}
+.zeitleiste .zeitleiste-quer{display:none;width:100%;height:auto;overflow:visible}
+@media (min-width:1200px){.zeitleiste:not(.nur-hoch) .zeitleiste-quer{display:block}.zeitleiste:not(.nur-hoch) .zeitleiste-hoch{display:none}}
+.zeitleiste-hoch{max-width:560px}
+.zl-lauf{margin-left:8px;padding-left:26px;border-left:3px solid var(--gold)}
+.zl-lauf ul{list-style:none;margin:0;padding:0}
+.zl-ep{font-family:var(--display);font-style:italic;font-weight:500;font-size:1.15rem;color:var(--gold-schrift);margin:0;padding:10px 0 2px}
+.zl-lauf li{position:relative;padding:8px 0}
+.zl-lauf li::before{content:"";position:absolute;left:-35px;top:50%;width:15px;height:15px;margin-top:-7.5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--weiss)}
+.zl-lauf li.zl-offen::before{left:-34px;width:13px;height:13px;margin-top:-6.5px;background:var(--weiss);border:1.5px dashed var(--tinte2)}
+.zl-da a{display:flex;gap:14px;align-items:center;text-decoration:none;color:var(--tinte)}
+.zl-da picture{flex:0 0 120px}
+.zl-da a > span{min-width:0}
+.zl-da img{border-radius:3px;border:1px solid var(--linie)}
+.zl-da a:hover strong{color:var(--weinrot)}
+.zl-lauf strong{display:block;font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.15}
+.zl-offen strong{font-style:italic;font-weight:600;color:var(--tinte2)}
+.zl-m{display:block;color:var(--tinte2);font-size:1rem}
+.zl-bruch{height:26px;margin-left:-2px}
+.zl-bruch svg{display:block}
+.zl-bruch path{stroke:var(--gold);stroke-width:2.5;fill:none;stroke-linecap:round}
+.zl-pfad{stroke:var(--gold);stroke-width:3;stroke-linecap:round}
+.zl-bruch{stroke:var(--gold);stroke-width:2;fill:none;stroke-linecap:round}
+.zl-grenze{stroke:var(--linie);stroke-width:1}
+.zl-knoten{fill:var(--gold);stroke:var(--weiss);stroke-width:3}
+.zl-knoten-bald{fill:var(--weiss);stroke:var(--tinte2);stroke-width:1.5;stroke-dasharray:3 2.5}
+.zl-rahmen{fill:none;stroke:var(--linie);stroke-width:1}
+.zl-epoche{font-family:var(--display);font-style:italic;font-weight:500;font-size:18px;fill:var(--gold-schrift)}
+.zl-titel{font-family:var(--display);font-weight:700;font-size:19px;fill:var(--tinte)}
+.zl-titel-bald{font-family:var(--display);font-style:italic;font-weight:600;font-size:18px;fill:var(--tinte2)}
+.zl-meta{font-family:var(--text);font-size:16px;fill:var(--tinte2)}
+.zl-stand{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.12em;text-transform:uppercase;fill:var(--tinte2)}
+.zeitleiste a:hover .zl-titel,.zeitleiste a:focus-visible .zl-titel{fill:var(--weinrot)}
+.zeitleiste a:hover .zl-rahmen,.zeitleiste a:focus-visible .zl-rahmen{stroke:var(--weinrot);stroke-width:2}
+.zeitleiste a{text-decoration:none}
+.zeitleiste a:focus{outline:none}
+
+/* Erschienene Äste als Karten mit ihrem Thumbnail */
+.erschienen-h{font-size:1.35rem;margin:6px 0 14px}
+.ast-karten{list-style:none;margin:0 0 32px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:24px 28px}
+.ast-karte{display:flex;flex-direction:column;gap:4px}
+.ast-karte-bild{margin-bottom:6px}
+.ast-karte p{margin:0}
+.ast-karte-bild{display:block;overflow:hidden;border-radius:4px;box-shadow:var(--schatten);background:var(--papier)}
+.ast-karte-bild img{transition:transform 600ms cubic-bezier(.2,.8,.2,1)}
+.ast-karte-bild:hover img{transform:scale(1.03)}
+.ast-karte h4{font-family:var(--display);font-weight:700;font-size:1.3rem;line-height:1.15;margin:0}
+.ast-karte h4 a{text-decoration:none;color:var(--tinte);display:inline-block;padding-block:10px}
+.ast-karte h4 a:hover{color:var(--weinrot)}
+.ast-karte-meta{font-size:.95rem;color:var(--tinte2)}
+
 /* Bücher-Seite */
 .bald-liste{list-style:none;margin:0 0 1em;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px 24px}
 .bald-liste li{padding:10px 0;border-bottom:1px solid var(--linie)}
