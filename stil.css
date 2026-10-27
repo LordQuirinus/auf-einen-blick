@@ -89,7 +89,7 @@ small{font-size:.85em}
 .knopf.zweit small{color:var(--tinte2);opacity:1}
 
 /* Werk-Liste (Karten als Zeitungsspalten, nicht als gleichförmige Kacheln) */
-.werk-liste{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,40px) clamp(20px,3vw,36px)}
+.werk-liste{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(20px,3vw,40px) clamp(20px,3vw,36px)}
 .werk-liste.gross{grid-template-columns:1fr;gap:0}
 .werk-karte{display:flex;flex-direction:column;gap:14px;padding:0 0 22px;border-bottom:1px solid var(--linie)}
 .werk-liste.gross .werk-karte{flex-direction:row;align-items:flex-start;gap:clamp(18px,3vw,40px);padding:28px 0}
@@ -113,7 +113,7 @@ small{font-size:.85em}
 .schritte strong{font-family:var(--display);font-size:1.3rem;font-weight:700;display:block;margin-bottom:.1em}
 
 /* Kanäle */
-.kanal-liste{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px 48px}
+.kanal-liste{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:28px 48px}
 .kanal{display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--linie)}
 .kanal img,.kanal .platzhalter{flex:0 0 88px;width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 1px 2px rgba(28,27,25,.1),0 8px 18px -8px rgba(28,27,25,.3)}
 .kanal .platzhalter{display:grid;place-items:center;background:var(--papier);border:1px dashed var(--silber);color:var(--silber);font-family:var(--display);font-size:2.2rem;font-weight:600;box-shadow:none}
@@ -179,7 +179,7 @@ small{font-size:.85em}
 .etappen li::before{counter-increment:et;content:counter(et);position:absolute;left:0;top:1px;width:30px;height:30px;border-radius:50%;border:2px solid var(--weinrot);color:var(--weinrot);font-family:var(--display);font-weight:700;display:grid;place-items:center;font-size:1.05rem;background:var(--papier)}
 .etappen strong,.paare strong{font-family:var(--display);font-size:1.25rem;font-weight:700;display:block;line-height:1.2}
 .etappen span,.paare span{color:var(--tinte2)}
-.paare{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px 24px}
+.paare{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:12px 24px}
 .steckbrief{margin:0 0 .5em;display:grid;gap:8px}
 .steckbrief div{display:grid;grid-template-columns:118px 1fr;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--linie)}
 .steckbrief dt{font-family:var(--display);font-weight:700;color:var(--weinrot);font-size:1.08rem}
@@ -200,7 +200,7 @@ small{font-size:.85em}
 
 /* Videofamilie */
 .familienplakat{border:1px solid var(--linie);border-radius:3px;box-shadow:var(--schatten);margin:10px 0 28px;background:var(--papier)}
-.aeste{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px 32px}
+.aeste{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:26px 32px}
 .ast ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .ast li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;grid-template-areas:"id titel bald" "id serie bald";column-gap:8px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--linie)}
 .ast li strong{grid-area:titel;font-family:var(--display);font-size:1.12rem;font-weight:700;line-height:1.2}
@@ -215,7 +215,7 @@ small{font-size:.85em}
 .ast-satz{font-style:italic;color:var(--tinte2);margin:0 0 .6em;font-size:1rem}
 
 /* Bücher-Seite */
-.bald-liste{list-style:none;margin:0 0 1em;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px}
+.bald-liste{list-style:none;margin:0 0 1em;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px 24px}
 .bald-liste li{padding:10px 0;border-bottom:1px solid var(--linie)}
 .bald-liste strong{font-family:var(--display);font-size:1.25rem;font-weight:700;display:block}
 .bald-liste span{color:var(--tinte2)}
