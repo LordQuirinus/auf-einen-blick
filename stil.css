@@ -125,6 +125,15 @@ small{font-size:.85em}
 .status{font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte2);border:1px solid var(--linie);border-radius:999px;padding:2px 9px;vertical-align:middle}
 .status.laeuft{color:var(--gruen);border-color:color-mix(in srgb,var(--gruen) 45%,transparent)}
 .kanal-links{font-size:1rem}
+.sozial{display:flex;flex-wrap:wrap;gap:8px;margin:.3em 0 .6em}
+.sozial a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid var(--linie);border-radius:999px;background:var(--papier);text-decoration:none;color:var(--tinte);font-family:var(--display);font-weight:600;font-size:1rem;transition:border-color var(--uebergang),color var(--uebergang),transform var(--uebergang)}
+.sozial a:hover{border-color:var(--weinrot);color:var(--weinrot);transform:translateY(-1px)}
+.sozial.hell a{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+.sozial.hell a:hover{border-color:var(--gold-hell);color:#fff}
+.fuss-sozial{grid-column:span 2}
+.fuss-titel{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:0 0 .2em;color:#F3E9E4}
+.fuss-sozial .sozial{margin:0 0 .9em}
+.lesen .sozial{margin:.2em 0 1em}
 
 /* Plakat-Teaser */
 .plakat-teaser{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center}
@@ -229,7 +238,7 @@ small{font-size:.85em}
 .fuss{margin-top:clamp(40px,6vw,80px);background:var(--weinrot);color:#F3E9E4;border-top:3px solid var(--gold)}
 .fuss a{color:#fff;text-decoration-color:rgba(255,255,255,.4)}
 .fuss a:hover{color:#fff;text-decoration-color:var(--gold-hell)}
-.fuss-innen{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding:40px 0 20px}
+.fuss-innen{display:grid;grid-template-columns:1.2fr 1.8fr;gap:32px;padding:40px 0 20px}
 .fuss-marke{display:flex;gap:14px;align-items:flex-start}
 .fuss-marke img{width:40px;height:40px;background:#fff;border-radius:50%;padding:4px;object-fit:contain}
 .fuss-marke strong{font-family:var(--display);font-size:1.3rem}
@@ -245,6 +254,7 @@ small{font-size:.85em}
   .plakat,.plakat-teaser,.inhalt{grid-template-columns:1fr}
   .plakat-bild{order:-1}
   .fuss-innen{grid-template-columns:1fr;gap:20px}
+  .fuss-sozial{grid-column:auto}
 }
 @media (max-width:640px){
   body{font-size:1rem}
