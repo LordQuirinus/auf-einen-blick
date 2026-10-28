@@ -24,6 +24,10 @@
   --rahmen:1180px; --schmal:760px; --rand:clamp(16px,4vw,40px);
   --schatten:0 1px 2px rgba(28,27,25,.08),0 14px 34px -14px rgba(122,31,43,.25);
   --uebergang:220ms cubic-bezier(.2,.8,.2,1);
+  /* Karten wie in der Lektüre-App (Radius 14, Schatten mit Weinrot-Hauch) */
+  --r:14px;
+  --karte-schatten:0 1px 2px rgba(28,27,25,.06),0 8px 22px rgba(138,18,32,.06);
+  --karte-schatten-hoch:0 2px 4px rgba(28,27,25,.07),0 14px 30px rgba(138,18,32,.11);
 }
 *{box-sizing:border-box}
 html{color-scheme:light;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -67,25 +71,37 @@ small{font-size:.85em}
 .randnotiz{font-style:italic;color:var(--tinte2);max-width:60ch}
 
 /* Kopf */
-.kopf{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--weiss) 88%,transparent);backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--linie)}
+/* Weinrotes Band wie die Lektüre-App; mit dem weinroten Fuß zusammen die „Banderole“ (Designsystem: rote Streifen oben und unten) */
+.kopf{position:sticky;top:0;z-index:20;background:var(--weinrot);color:var(--fuss-text);border-bottom:1px solid #5E1721;box-shadow:0 6px 18px -12px rgba(28,27,25,.55)}
+.kopf :focus-visible{outline-color:var(--gold-hell)}
 .kopf-innen{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
-.marke{flex:0 0 auto;min-width:46px;min-height:44px;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tinte);font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:.01em}
-.marke img{width:46px;height:46px;object-fit:contain}
+.marke{flex:0 0 auto;min-width:46px;min-height:44px;display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:.01em}
+.marke img{width:46px;height:46px;object-fit:contain;background:#fff;border-radius:50%;padding:4px;box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.marke:hover{color:#fff}
 .nav{display:flex;gap:clamp(14px,2.4vw,32px)}
-.nav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-decoration:none;color:var(--tinte2);font-family:var(--display);font-weight:600;font-size:1.12rem;padding:0 2px;border-bottom:2px solid transparent;transition:color var(--uebergang),border-color var(--uebergang)}
-.nav a:hover{color:var(--tinte);border-color:var(--gold)}
-.nav a[aria-current="page"]{color:var(--weinrot);border-color:var(--weinrot)}
+.nav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-decoration:none;color:var(--fuss-text);font-family:var(--display);font-weight:600;font-size:1.12rem;padding:0 2px;border-bottom:2px solid transparent;transition:color var(--uebergang),border-color var(--uebergang)}
+.nav a:hover{color:#fff;border-color:var(--gold-hell)}
+.nav a[aria-current="page"]{color:#fff;border-color:var(--gold-hell)}
 
 /* Held (Startseite) */
-.held{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(48px,8vw,120px) 0 clamp(120px,16vw,210px)}
-.held-text h1{max-width:12ch}
-.held .vorspann{margin-top:0}
-.held-bild{display:flex;justify-content:center}
-.held-bild picture{width:min(100%,420px)}
-.held-bild .gucker{width:100%;filter:drop-shadow(0 18px 28px rgba(28,27,25,.14))}
-.figuren{position:absolute;bottom:0;height:clamp(92px,13vw,190px);width:auto;pointer-events:none}
-.figuren-links{left:0}
-.figuren-rechts{right:0}
+/* Wie das Kanalbanner: weiße Bühne, Schriftzug G-10 mittig, darunter die gesperrte Leiste in Weinrot,
+   links vier, rechts drei Dorian-Figuren auf gemeinsamer Fußlinie. Darunter Claim und Knöpfe, mittig. */
+.held{background:var(--papier);border-bottom:1px solid var(--linie)}
+.held-buehne{width:min(100% - 2*var(--rand),1320px);margin-inline:auto;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:clamp(16px,3vw,48px);padding:clamp(28px,4.5vw,60px) 0 clamp(24px,3.6vw,48px)}
+.held-buehne picture{display:block}
+.held-marke{text-align:center;padding-bottom:4px}
+.held-logo{width:min(42vw,540px);height:auto;margin-inline:auto}
+.held-leiste{font-family:var(--display);font-weight:600;font-size:clamp(.875rem,.7rem + .45vw,1.08rem);letter-spacing:.26em;text-transform:uppercase;color:var(--weinrot);margin:clamp(10px,1.4vw,18px) auto 0;max-width:none;white-space:nowrap}
+.held-leiste i{font-style:normal;margin:0 .35em;letter-spacing:0}
+.held-leiste span{white-space:nowrap}
+.held-figuren{height:clamp(120px,15.5vw,212px);width:auto;max-width:100%;object-fit:contain}
+.held-buehne > picture:first-child .held-figuren{margin-left:auto}
+.held-buehne > picture:last-child .held-figuren{margin-right:auto}
+.held-text{text-align:center;padding:clamp(36px,5vw,64px) 0 clamp(8px,2vw,24px)}
+.held-text h1{font-size:clamp(2.3rem,1.6rem + 2.8vw,3.9rem);max-width:none}
+.held-text h1 span{white-space:nowrap}
+.held-text .vorspann{margin:0 auto;max-width:58ch}
+.held-text .knoepfe{justify-content:center}
 .knoepfe{display:flex;gap:12px;flex-wrap:wrap;margin:1.4rem 0 0}
 .knopf{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--weinrot);color:#fff;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.15;padding:12px 20px;border:1px solid var(--weinrot);border-radius:3px;min-height:48px;justify-content:center;box-shadow:0 1px 2px rgba(28,27,25,.1),0 10px 24px -12px rgba(122,31,43,.6);transition:transform var(--uebergang),box-shadow var(--uebergang),background var(--uebergang)}
 .knopf:hover{background:var(--blutrot);color:#fff;transform:translateY(-1px);box-shadow:0 2px 4px rgba(28,27,25,.1),0 14px 28px -12px rgba(122,31,43,.7)}
@@ -96,11 +112,17 @@ small{font-size:.85em}
 
 /* Werk-Liste (Karten als Zeitungsspalten, nicht als gleichförmige Kacheln) */
 .werk-liste{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(20px,3vw,40px) clamp(20px,3vw,36px)}
-.werk-liste.gross{grid-template-columns:1fr;gap:0}
-.werk-karte{display:flex;flex-direction:column;gap:14px;padding:0 0 22px;border-bottom:1px solid var(--linie)}
-.werk-liste.gross .werk-karte{flex-direction:row;align-items:flex-start;gap:clamp(18px,3vw,40px);padding:28px 0}
-.werk-liste.gross .werk-bild{flex:0 0 min(44%,460px)}
-.werk-bild{display:block;overflow:hidden;border-radius:4px;box-shadow:var(--schatten);background:var(--papier)}
+.werk-liste.gross{grid-template-columns:1fr;gap:clamp(18px,2.4vw,28px)}
+/* Karten wie in der Lektüre-App: weiße Karte, Haarlinie, weicher weinroter Schatten, Bild bündig oben */
+.werk-karte{display:flex;flex-direction:column;gap:0;background:var(--papier);border:1px solid var(--linie);border-radius:var(--r);box-shadow:var(--karte-schatten);overflow:hidden;transition:box-shadow var(--uebergang),transform var(--uebergang)}
+.werk-karte:hover{box-shadow:var(--karte-schatten-hoch);transform:translateY(-2px)}
+.werk-text{padding:16px clamp(16px,2vw,22px) 4px}
+.werk-liste.gross .werk-karte{flex-direction:row;align-items:center;gap:0}
+.werk-liste.gross .werk-bild{flex:0 0 min(46%,480px);align-self:stretch}
+.werk-liste.gross .werk-bild picture,.werk-liste.gross .werk-bild img{height:100%;object-fit:cover}
+.werk-liste.gross .werk-text{padding:20px clamp(18px,3vw,36px)}
+.werk-bild{display:block;overflow:hidden;background:var(--papier);border-bottom:1px solid var(--linie)}
+.werk-liste.gross .werk-bild{border-bottom:0;border-right:1px solid var(--linie)}
 .werk-bild img{transition:transform 600ms cubic-bezier(.2,.8,.2,1)}
 .werk-bild:hover img{transform:scale(1.025)}
 .werk-text :is(h2,h3){font-size:1.65rem;margin:.1em 0 .25em}
@@ -138,7 +160,7 @@ small{font-size:.85em}
 .status.laeuft{color:var(--gruen);border-color:color-mix(in srgb,var(--gruen) 45%,transparent)}
 .kanal-links{font-size:1rem}
 .sozial{display:flex;flex-wrap:wrap;gap:8px;margin:.3em 0 .6em}
-.sozial a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--linie);border-radius:999px;background:var(--papier);text-decoration:none;color:var(--tinte);font-family:var(--display);font-weight:600;font-size:1rem;transition:border-color var(--uebergang),color var(--uebergang),transform var(--uebergang)}
+.sozial a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 14px;border:1px solid var(--linie);border-radius:999px;background:var(--papier);text-decoration:none;color:var(--tinte);font-family:var(--display);font-weight:600;font-size:1rem;transition:border-color var(--uebergang),color var(--uebergang),transform var(--uebergang)}
 .sozial a:hover{border-color:var(--weinrot);color:var(--weinrot);transform:translateY(-1px)}
 .sozial.hell a{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
 .sozial.hell a:hover{border-color:var(--gold-hell);color:#fff}
@@ -186,7 +208,7 @@ small{font-size:.85em}
 .klausur{counter-reset:k;list-style:none;margin:0 0 1em;padding:0;display:grid;gap:12px}
 .klausur li{position:relative;padding-left:44px;font-size:1.12rem;max-width:60ch}
 .klausur li::before{counter-increment:k;content:counter(k);position:absolute;left:0;top:1px;width:30px;height:30px;border-radius:50%;background:var(--weinrot);color:#fff;font-family:var(--display);font-weight:700;display:grid;place-items:center;font-size:1.05rem}
-.tipp{background:var(--papier);border:1px solid var(--linie);border-radius:3px;padding:12px 16px;max-width:60ch}
+.tipp{background:var(--papier);border:1px solid var(--linie);border-radius:10px;padding:12px 16px;max-width:60ch}
 .zitat{font-family:var(--display);font-style:italic;font-size:1.4rem;line-height:1.35;color:var(--weinrot);margin:1em 0 1.4em;padding-left:18px;border-left:1px solid var(--linie);max-width:40ch}
 .etappen{counter-reset:et;list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .etappen li{position:relative;padding-left:44px}
@@ -205,7 +227,7 @@ small{font-size:.85em}
 .kapitel a{text-decoration:none;color:var(--tinte);display:flex;gap:10px;padding:10px 0}
 .kapitel a:hover{color:var(--weinrot)}
 .zeit{font-variant-numeric:tabular-nums;color:var(--gold-schrift);font-weight:700;min-width:38px;text-align:right}
-.short{display:flex;gap:18px;align-items:flex-start;margin-top:2em;padding:18px;background:var(--papier);border:1px solid var(--linie);border-radius:4px}
+.short{display:flex;gap:18px;align-items:flex-start;margin-top:2em;padding:18px;background:var(--papier);border:1px solid var(--linie);border-radius:var(--r);box-shadow:var(--karte-schatten)}
 .short-bild{flex:0 0 110px;border-radius:6px;overflow:hidden;box-shadow:var(--schatten)}
 .short h3{font-size:1.3rem;margin:0 0 .3em}
 .short p{margin:0 0 .5em;font-size:1rem}
@@ -275,11 +297,11 @@ small{font-size:.85em}
 .ast-karte{display:flex;flex-direction:column;gap:4px}
 .ast-karte-bild{margin-bottom:6px}
 .ast-karte p{margin:0}
-.ast-karte-bild{display:block;overflow:hidden;border-radius:4px;box-shadow:var(--schatten);background:var(--papier)}
+.ast-karte-bild{display:block;overflow:hidden;border-radius:10px;border:1px solid var(--linie);box-shadow:var(--karte-schatten);background:var(--papier)}
 .ast-karte-bild img{transition:transform 600ms cubic-bezier(.2,.8,.2,1)}
 .ast-karte-bild:hover img{transform:scale(1.03)}
 .ast-karte h4{font-family:var(--display);font-weight:700;font-size:1.3rem;line-height:1.15;margin:0}
-.ast-karte h4 a{text-decoration:none;color:var(--tinte);display:inline-block;padding-block:10px}
+.ast-karte h4 a{text-decoration:none;color:var(--tinte);display:inline-block;padding-block:10px;min-height:44px}
 .ast-karte h4 a:hover{color:var(--weinrot)}
 .ast-karte-meta{font-size:.95rem;color:var(--tinte2)}
 
@@ -320,9 +342,6 @@ small{font-size:.85em}
 
 /* Handy und Tablet */
 @media (max-width:900px){
-  .held{grid-template-columns:1fr;padding-bottom:clamp(110px,22vw,170px);text-align:left}
-  .held-bild{order:-1}
-  .held-bild picture{width:min(60%,260px)}
   .plakat,.plakat-teaser,.inhalt{grid-template-columns:1fr}
   .plakat-bild{order:-1}
   .fuss-innen{grid-template-columns:1fr;gap:20px}
@@ -333,8 +352,6 @@ small{font-size:.85em}
   .kopf-innen{min-height:56px}
   .marke span{display:none}
   .nav a{font-size:1.02rem}
-  .held-text h1{font-size:clamp(2.4rem,12vw,3.2rem)}
-  .figuren{height:max(72px,17vw)}
   .werk-liste.gross .werk-karte{flex-direction:column}
   .werk-liste.gross .werk-bild{flex-basis:auto}
   .kapitel{columns:1}
@@ -345,6 +362,25 @@ small{font-size:.85em}
   .leitfrage{text-align:left;padding:14px 18px 16px}
   .kurz{text-align:left}
   .video figcaption{text-align:left}
+}
+/* Handy: wie das Banner auf dem Handy zuerst Schriftzug und Leiste, die beiden Figurengruppen darunter nebeneinander */
+@media (max-width:900px){
+  .held-buehne{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"marke marke" "links rechts";row-gap:22px;column-gap:14px;padding-top:24px}
+  .held-marke{grid-area:marke}
+  .held-buehne > picture:first-child{grid-area:links}
+  .held-buehne > picture:last-child{grid-area:rechts}
+  .held-logo{width:min(100%,440px)}
+  /* Kein Trennpunkt am Zeilenende: am Handy zwei feste Zeilen, „Zusammenfassung · Deutung“ / „Klausur-Check“ */
+  .held-leiste{display:flex;flex-direction:column;align-items:center;white-space:normal;letter-spacing:.12em;line-height:1.7}
+  .held-leiste .held-trenner{display:none}
+  .held-figuren{height:auto;width:100%;max-height:150px}
+  .held-buehne > picture:first-child .held-figuren{margin-left:auto;margin-right:0}
+  .held-buehne > picture:last-child .held-figuren{margin-right:auto;margin-left:0}
+}
+/* Tablet: Bühne gestapelt, die Leiste passt wieder in eine Zeile */
+@media (min-width:600px) and (max-width:900px){
+  .held-leiste{flex-direction:row;justify-content:center;letter-spacing:.2em}
+  .held-leiste .held-trenner{display:inline}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
